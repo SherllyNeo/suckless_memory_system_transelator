@@ -74,9 +74,12 @@ char* number_to_image(char* number_string, struct memory_token* memory_token_arr
 
 }
 
-void slice(char* str, char *result, size_t start, size_t end)
+void slice(char* input_string, char *digits, int i)
 {
-    strncpy(result, str + start, end - start);
+	for (int j = 0; j<DIGITS_PER_IMAGE; ++j) {
+		digits[j] = input_string[i+j];
+		digits[DIGITS_PER_IMAGE+1] = '\0';
+	}
 }
 
 void main(int argc, char **argv) {
@@ -146,8 +149,11 @@ void main(int argc, char **argv) {
 		*/
 
 		/* example 0 1 2 3 4 5 -> 0 1 2 and 3 4 5 */
-		char digits[DIGITS_PER_IMAGE];
-		slice(input_string,digits,i,i+DIGITS_PER_IMAGE);
+		char digits[DIGITS_PER_IMAGE+1];
+
+		/* Slicing functionality */
+		slice(input_string,digits,i);
+
 		char* image = number_to_image(digits,memory_token_array,amount_of_tokens);
 		printf("%s\n",digits);
 		if (strncmp(image,"404",3) != 0) {
