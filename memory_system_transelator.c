@@ -78,8 +78,8 @@ void slice(char* input_string, char *digits, int i)
 {
 	for (int j = 0; j<DIGITS_PER_IMAGE; ++j) {
 		digits[j] = input_string[i+j];
-		digits[DIGITS_PER_IMAGE+1] = '\0';
 	}
+	digits[DIGITS_PER_IMAGE+1] = '\0';
 }
 
 void main(int argc, char **argv) {
