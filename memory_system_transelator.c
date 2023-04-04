@@ -134,6 +134,20 @@ void main(int argc, char **argv) {
 	struct memory_token* memory_token_array =  csv_to_memory_array(PATH_TO_SYSTEM,&amount_of_tokens);
 
 
+	/* remove whitespace */
+	int added = 0;
+	char input_string_tmp[input_length];
+	for (int i=0;i<input_length;++i) {
+		char current_char = input_string[i];
+		if (!(current_char == ' ' || current_char == '\n' || current_char == '	' || current_char == '\r')) {
+			input_string_tmp[added] = current_char;
+			added++;
+		}
+	}
+	input_string_tmp[added+1] = '\0';
+	strncpy(input_string,input_string_tmp,input_length);
+	input_length = added;
+
 	while (input_length % DIGITS_PER_IMAGE != 0) {
 	/* Adjust input lengh by adding 0s until it can be transelated cleanly */
 		input_string[input_length] = '0';
